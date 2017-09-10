@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :address do
+    kind 'Rua'
     country FFaker::Address.country
     state FFaker::AddressBR.state
     city FFaker::AddressBR.city
@@ -9,6 +10,7 @@ FactoryGirl.define do
     zip_code FFaker::AddressBR.zip_code
     latitude FFaker::Geolocation.lat
     longitude FFaker::Geolocation.lng
+    user
   end
 
   factory :category do
@@ -21,6 +23,9 @@ FactoryGirl.define do
     players { rand(2..10) }
     launch_date FFaker::Time.date
     lifetime FFaker::Time.date
+    user
+    game_kind
+    category
   end
 
   factory :game_kind do
@@ -29,6 +34,7 @@ FactoryGirl.define do
 
   factory :user do
     name  FFaker::Name.first_name
+    password 'password123'
     surname FFaker::Name.last_name
     email FFaker::Internet.email
     identification_document FFaker::IdentificationBR.cpf
