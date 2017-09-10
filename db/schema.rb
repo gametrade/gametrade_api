@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170910022946) do
     t.string   "city",         limit: 50
     t.string   "state",        limit: 30
     t.string   "country",      limit: 30
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
