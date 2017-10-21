@@ -1,7 +1,11 @@
 class Game < ApplicationRecord
+  validates_presence_of :name, :description, :players, :lifetime
+
   belongs_to :user
   belongs_to :game_kind
   belongs_to :category
 
-  validates_presence_of :name, :description, :players, :lifetime
+  has_many :photos
+
+  accepts_nested_attributes_for :photos, allow_destroy: true
 end

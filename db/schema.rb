@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910022946) do
+ActiveRecord::Schema.define(version: 20170924222931) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "kind",         limit: 10
@@ -59,10 +59,13 @@ ActiveRecord::Schema.define(version: 20170910022946) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "path",       limit: 256
     t.integer  "game_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["game_id"], name: "index_photos_on_game_id"
   end
 

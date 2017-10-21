@@ -14,11 +14,11 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name 'rpg'
+    name FFaker::BaconIpsum.word
   end
 
   factory :game do
-    name 'Dungeons & Dragons'
+    name FFaker::BaconIpsum.word
     description FFaker::Lorem.paragraph
     players { rand(2..10) }
     launch_date FFaker::Time.date
@@ -29,7 +29,7 @@ FactoryGirl.define do
   end
 
   factory :game_kind do
-    name 'board'
+    name FFaker::BaconIpsum.word
   end
 
   factory :user do

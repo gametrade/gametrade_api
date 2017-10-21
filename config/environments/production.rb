@@ -75,4 +75,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+    storage: :cloudinary,
+    cloudinary_credentials: Rails.root.join("config/cloudinary.yml")
+  }
 end
