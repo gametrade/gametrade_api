@@ -4,10 +4,13 @@ gem 'rails',                        '~> 5.0.5'
 gem 'puma',                         '~> 3.0'
 gem 'jbuilder',                     '~> 2.5'
 gem 'ransack',                      '~> 1.8.3'
-gem 'sqlite3',                      '~> 1.3.13'
+gem 'sqlite3'
+gem 'pg',                           '~> 0.18.4'
 gem 'rack-cors',                    '~> 1.0.1'
 gem 'devise_token_auth',            '~> 0.1.42'
 gem 'omniauth',                     '~> 1.6.1'
+gem 'paperclip',                    '~> 5.0.0'
+gem 'paperclip-cloudinary',         '~> 1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
