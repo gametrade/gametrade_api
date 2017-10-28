@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924222931) do
+ActiveRecord::Schema.define(version: 20171028122447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,16 +46,17 @@ ActiveRecord::Schema.define(version: 20170924222931) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string   "name",         limit: 100
-    t.string   "description",  limit: 300
+    t.string   "name",                         limit: 100
+    t.string   "description",                  limit: 300
     t.datetime "launch_date"
     t.datetime "lifetime"
     t.integer  "players"
     t.integer  "user_id"
     t.integer  "game_kind_id"
     t.integer  "category_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "permitted_intant_reservation"
     t.index ["category_id"], name: "index_games_on_category_id", using: :btree
     t.index ["game_kind_id"], name: "index_games_on_game_kind_id", using: :btree
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
@@ -70,6 +71,18 @@ ActiveRecord::Schema.define(version: 20170924222931) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.index ["game_id"], name: "index_photos_on_game_id", using: :btree
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "status"
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_reservations_on_game_id", using: :btree
+    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -119,6 +132,8 @@ ActiveRecord::Schema.define(version: 20170924222931) do
   add_foreign_key "games", "game_kinds"
   add_foreign_key "games", "users"
   add_foreign_key "photos", "games"
+  add_foreign_key "reservations", "games"
+  add_foreign_key "reservations", "users"
   add_foreign_key "wishlists", "games"
   add_foreign_key "wishlists", "users"
 end
