@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :game_kinds, only: [:index, :show]
   resources :games
+  resources :reservations
 end

@@ -9,4 +9,3 @@ class CategoriesController < ApplicationController
     render template: 'categories/show', locals: { category: category }
   end
 end
-  

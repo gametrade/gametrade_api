@@ -8,4 +8,5 @@ json.game do
   json.user_id      game.user_id
   json.game_kind    game.game_kind
   json.category     game.category
+  json.price        game.price
 end

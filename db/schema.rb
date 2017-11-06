@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031014042) do
+ActiveRecord::Schema.define(version: 20171031235439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,18 +46,18 @@ ActiveRecord::Schema.define(version: 20171031014042) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string   "name",                         limit: 100
-    t.string   "description",                  limit: 300
+    t.string   "name",                          limit: 100
+    t.string   "description",                   limit: 300
     t.datetime "launch_date"
     t.datetime "lifetime"
     t.integer  "players"
     t.integer  "user_id"
     t.integer  "game_kind_id"
     t.integer  "category_id"
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
-    t.boolean  "permitted_intant_reservation"
-    t.decimal  "price",                                    precision: 6, scale: 2
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+    t.boolean  "permitted_instant_reservation"
+    t.decimal  "price",                                     precision: 6, scale: 2
     t.index ["category_id"], name: "index_games_on_category_id", using: :btree
     t.index ["game_kind_id"], name: "index_games_on_game_kind_id", using: :btree
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
@@ -80,8 +80,9 @@ ActiveRecord::Schema.define(version: 20171031014042) do
     t.integer  "user_id"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "value",      precision: 6, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["game_id"], name: "index_reservations_on_game_id", using: :btree
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end

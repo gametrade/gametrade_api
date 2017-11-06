@@ -41,7 +41,7 @@ class GamesController < ApplicationController
     params.require(:game).
       permit(:name, :description, :launch_date, :lifetime, :players,
              :game_kind_id, :category_id, :user_id, photos_attributes: [:photo])
-      end
+  end
 
   def user_game
     current_user.games

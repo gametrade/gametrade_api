@@ -6,6 +6,7 @@ class CreateReservations < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.datetime :start_date
       t.datetime :end_date
+      t.decimal :value, precision: 6, scale: 2
 
       t.timestamps
     end

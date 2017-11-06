@@ -2,7 +2,7 @@ class WishlistsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    wishlists = current_user.wishlists    
+    wishlists = current_user.wishlists
     render template: 'wishlists/index', locals: { wishlists: wishlists }
   end
 
