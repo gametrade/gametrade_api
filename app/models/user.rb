@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_one :address
   has_many :wishlists
+  has_many :reservations
 
   accepts_nested_attributes_for :address, allow_destroy: true
 end

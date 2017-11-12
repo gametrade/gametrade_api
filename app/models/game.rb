@@ -6,6 +6,7 @@ class Game < ApplicationRecord
   belongs_to :category
 
   has_many :photos
+  has_many :reservations
 
   accepts_nested_attributes_for :photos, allow_destroy: true
 end

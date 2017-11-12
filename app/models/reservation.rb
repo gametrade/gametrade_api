@@ -9,7 +9,6 @@ class Reservation < ApplicationRecord
 
   def total_value
     reservation_days = (start_date.to_date..end_date.to_date).count
-    binding.pry
     self.value = game.price.to_f * reservation_days
   end
 

@@ -4,9 +4,9 @@ json.user do
   json.email                    user.email
   json.identification_document  user.identification_document
   json.birth_date               user.birth_date
-  json.photo                    user.photo
   json.rating                   user.rating
   json.interests                user.interests
+  json.photo                    user.photo
 
   if user.address
     json.adress do

@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   def index
     search = Game.ransack(params[:q])
-    render json: search.result
+    render template: 'games/index', locals: { games: search.result }
   end
 
   def show
