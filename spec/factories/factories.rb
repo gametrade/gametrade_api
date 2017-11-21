@@ -1,4 +1,6 @@
-FactoryGirl.define do
+require 'ffaker'
+
+FactoryBot.define do
   factory :address do
     kind 'Rua'
     country FFaker::Address.country
@@ -14,11 +16,11 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name FFaker::BaconIpsum.word
+    sequence(:name) { |n| n.to_s + FFaker::BaconIpsum.word }
   end
 
   factory :game do
-    name FFaker::BaconIpsum.word
+    sequence(:name) { |n| n.to_s + FFaker::BaconIpsum.word }
     description FFaker::Lorem.paragraph
     players { rand(2..10) }
     launch_date FFaker::Time.date
@@ -29,17 +31,18 @@ FactoryGirl.define do
   end
 
   factory :game_kind do
-    name FFaker::BaconIpsum.word
+    sequence(:name) { |n| n.to_s + FFaker::BaconIpsum.word }
   end
 
   factory :user do
-    name  FFaker::Name.first_name
+    sequence(:name) { |n| n.to_s + FFaker::NameBR.name }
     password 'password123'
     surname FFaker::Name.last_name
-    email FFaker::Internet.email
+    sequence(:email) { |n| n.to_s + FFaker::Internet.email }
     identification_document FFaker::IdentificationBR.cpf
     birth_date FFaker::Time.date
     rating { rand(2..10) }
+    contact FFaker::PhoneNumberBR.mobile_phone_number
   end
 
   factory :wishlist do
