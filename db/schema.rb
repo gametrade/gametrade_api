@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121000912) do
+ActiveRecord::Schema.define(version: 20171121005603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "kind",         limit: 10
-    t.string   "street",       limit: 50
-    t.string   "number",       limit: 10
-    t.string   "complement",   limit: 20
-    t.string   "zip_code",     limit: 20
-    t.string   "neighborhood", limit: 20
-    t.string   "city",         limit: 50
-    t.string   "state",        limit: 30
-    t.string   "country",      limit: 30
+    t.string   "kind"
+    t.string   "street"
+    t.string   "number"
+    t.string   "complement"
+    t.string   "zip_code"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
