@@ -9,5 +9,4 @@ json.game do
   json.game_kind    game.game_kind
   json.category     game.category
   json.price        game.price
-  json.photos       game.photos.each(&:url)
 end

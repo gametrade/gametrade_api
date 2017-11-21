@@ -1,6 +1,6 @@
 require 'ffaker'
 
-FactoryBot.define do
+FactoryGirl.define do
   factory :address do
     kind 'Rua'
     country FFaker::Address.country
