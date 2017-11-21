@@ -15,6 +15,7 @@ class UserController < ApplicationController
 
   def permitted_attributes
     params.require(:user).
-      permit(:name, :surname, :email, :identification_document, :birth_date)
+      permit(:name, :surname, :email, :identification_document, :birth_date,
+             :contact)
   end
 end
