@@ -12,6 +12,7 @@ gem 'paperclip',                    '~> 5.0.0'
 gem 'paperclip-cloudinary',         '~> 1.0'
 gem 'factory_girl_rails'
 gem 'ffaker'
+gem 'activerecord-postgres-earthdistance'
 
 group :development, :test do
   gem 'byebug', platform: :mri

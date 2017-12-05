@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121005603) do
+ActiveRecord::Schema.define(version: 20171205025652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "cube"
+  enable_extension "earthdistance"
 
   create_table "addresses", force: :cascade do |t|
     t.string   "kind"
@@ -25,11 +27,12 @@ ActiveRecord::Schema.define(version: 20171121005603) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.decimal  "lat"
+    t.decimal  "lng"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index "ll_to_earth((lat)::double precision, (lng)::double precision)", name: "addresses_earthdistance_ix", using: :gist
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
