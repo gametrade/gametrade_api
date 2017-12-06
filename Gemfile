@@ -13,6 +13,7 @@ gem 'paperclip-cloudinary',         '~> 1.0'
 gem 'factory_girl_rails'
 gem 'ffaker'
 gem 'activerecord-postgres-earthdistance'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platform: :mri

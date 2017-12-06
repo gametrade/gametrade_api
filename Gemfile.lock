@@ -83,6 +83,7 @@ GEM
       railties (>= 3.0.0)
     ffaker (2.6.0)
     ffi (1.9.18)
+    geocoder (1.4.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.6)
@@ -258,6 +259,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   ffaker
+  geocoder
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   omniauth (~> 1.6.1)
