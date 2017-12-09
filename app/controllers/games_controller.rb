@@ -1,10 +1,11 @@
 class GamesController < ApplicationController
-  before_action :authentication_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    search = Game.ransack(params[:q]).order(:desc)
+    limit_items ||= params[:limit]
+    search = Game.ransack(params[:q])
     render template: 'games/index',
-           locals: { games: search.result.page(params[:page] }
+           locals: { games: search.result.order(created_at: :desc).limit(limit_items) }
   end
 
   def show
@@ -22,7 +23,7 @@ class GamesController < ApplicationController
     if game.save
       render template: 'games/show', locals: { game: game }
     else
-      render json: game.errors
+      render json: game.errors, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,7 @@ class GamesController < ApplicationController
     if game.update_attributes(permitted_attributes)
       render template: 'games/show', locals: { game: game }
     else
-      render json game.errors
+      render json game.errors, status: :unprocessable_entity
     end
   end
 

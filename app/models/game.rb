@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  validates_presence_of :name, :description, :players, :lifetime
+  validates_presence_of :name, :description, :players
 
   belongs_to :user
   belongs_to :game_kind

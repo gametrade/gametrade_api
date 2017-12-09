@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:update]
+
+  def index
+    users = User.ransack(params[:q])
+    render template: 'users/index', locals: { users: users.result }
+  end
 
   def show
     user = User.find(params.require(:id))
@@ -8,7 +13,11 @@ class UsersController < ApplicationController
 
   def update
     user = current_user.update_attributes(permitted_attributes)
-    render template: 'users/show', locals: { user: user }
+    if user.errors.empty?
+      render template: 'users/show', locals: { user: user }
+    else
+      render json: user.errors, status: :unprocessable_entity
+    end
   end
 
   private
