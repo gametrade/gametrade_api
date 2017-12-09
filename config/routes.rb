@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
   resources :categories, only: [:index, :show]
   resources :game_kinds, only: [:index, :show]
+
+  get '/my_games', to: 'games#my_games'
   resources :games
   resources :reservations
 end

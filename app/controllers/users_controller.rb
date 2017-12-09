@@ -1,8 +1,8 @@
-class UserController < ApplicationController
-  before_action :authenticate_user!
+class UsersController < ApplicationController
+  # before_action :authenticate_user!
 
   def show
-    user = current_user.find(param.require(:id))
+    user = User.find(params.require(:id))
     render template: 'users/show', locals: { user: user }
   end
 

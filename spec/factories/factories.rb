@@ -1,6 +1,6 @@
 require 'ffaker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :address do
     kind 'Rua'
     country FFaker::Address.country
@@ -10,8 +10,6 @@ FactoryGirl.define do
     street FFaker::Address.street_name
     number FFaker::Address.building_number
     zip_code FFaker::AddressBR.zip_code
-    latitude FFaker::Geolocation.lat
-    longitude FFaker::Geolocation.lng
     user
   end
 

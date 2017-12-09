@@ -19,6 +19,8 @@ json.user do
       json.city         user.adress.city
       json.state        user.adress.state
       json.country      user.adress.country
+      json.lat      user.adress.lat
+      json.lng      user.adress.lng
     end
   end
 end

@@ -1,14 +1,20 @@
 class GamesController < ApplicationController
-  # before_action :authentication_user!, except: [:index, :show]
+  before_action :authentication_user!, except: [:index, :show]
 
   def index
-    search = Game.ransack(params[:q])
-    render template: 'games/index', locals: { games: search.result }
+    search = Game.ransack(params[:q]).order(:desc)
+    render template: 'games/index',
+           locals: { games: search.result.page(params[:page] }
   end
 
   def show
     game = Game.find(params.require(:id))
     render template: 'games/show', locals: { game: game }
+  end
+
+  def my_games
+    search = current_user.games.ransack(params[:q])
+    render template: 'games/index', locals: { games: search.result }
   end
 
   def create
