@@ -5,7 +5,8 @@ class GamesController < ApplicationController
     limit_items ||= params[:limit]
     search = Game.ransack(params[:q])
     render template: 'games/index',
-           locals: { games: search.result.order(created_at: :desc).limit(limit_items) }
+           locals: { games: search.result.order(created_at: :desc).
+                                   limit(limit_items) }
   end
 
   def show
@@ -16,6 +17,10 @@ class GamesController < ApplicationController
   def my_games
     search = current_user.games.ransack(params[:q])
     render template: 'games/index', locals: { games: search.result }
+  end
+
+  def nearby
+    
   end
 
   def create

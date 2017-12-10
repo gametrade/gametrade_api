@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def permitted_attributes
     params.require(:user).
       permit(:name, :surname, :email, :identification_document, :birth_date,
-             :contact, address_attributes: [:kind, :street, :number,
+             :photo, :contact, address_attributes: [:kind, :street, :number,
                                               :zip_code, :street, :state,
                                               :country])
   end
