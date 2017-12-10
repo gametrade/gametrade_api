@@ -12,9 +12,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = current_user.update_attributes(permitted_attributes)
-    if user.errors.empty?
-      render template: 'users/show', locals: { user: user }
+    if current_user.update_attributes(permitted_attributes)
+      render template: 'users/show', locals: { user: current_user }
     else
       render json: user.errors, status: :unprocessable_entity
     end
@@ -25,6 +24,8 @@ class UsersController < ApplicationController
   def permitted_attributes
     params.require(:user).
       permit(:name, :surname, :email, :identification_document, :birth_date,
-             :contact)
+             :contact, address_attributes: [:kind, :street, :number,
+                                              :zip_code, :street, :state,
+                                              :country])
   end
 end
