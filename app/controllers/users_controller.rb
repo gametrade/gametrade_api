@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if current_user.update_attributes(permitted_attributes)
       render template: 'users/show', locals: { user: current_user }
     else
-      render json: user.errors, status: :unprocessable_entity
+      render json: current_user.errors, status: :unprocessable_entity
     end
   end
 
