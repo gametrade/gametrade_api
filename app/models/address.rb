@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
   acts_as_geolocated
 
-  validates_presence_of :kind, :street, :number, :zip_code, :street, :state,
+  validates_presence_of :street, :number, :zip_code, :street, :state,
                         :country
 
   after_validation :geocode
