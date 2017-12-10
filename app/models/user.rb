@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
                             :storage => :cloudinary,
                             :path => ':id/:style/:filename'
 
+  validates_attachment_content_type :photo, content_type: %r{\Aimage\/.*\z}
+
   has_one :address
   has_many :wishlists
   has_many :reservations
