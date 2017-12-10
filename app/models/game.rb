@@ -3,7 +3,7 @@ class Game < ApplicationRecord
 
   belongs_to :user
   belongs_to :game_kind
-  belongs_to :category
+  belongs_to :theme
 
   has_many :photos
   has_many :reservations

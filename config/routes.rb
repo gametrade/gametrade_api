@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'games#index'
   resources :users, only: [:index, :show, :update]
-  resources :categories, only: [:index, :show]
+  resources :themes , only: [:index, :show]
   resources :game_kinds, only: [:index, :show]
 
   get '/my_games', to: 'games#my_games'

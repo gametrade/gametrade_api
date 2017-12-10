@@ -7,8 +7,17 @@ json.game do
   json.players      game.players
   json.user_id      game.user_id
   json.game_kind    game.game_kind
-  json.category     game.category
+  json.theme        game.theme
   json.price        game.price
   json.created_at   game.updated_at
   json.updated_at   game.updated_at
+
+  if game.photos
+    json.photos do
+      json.array! game.photos do |item|
+        json.photo item.photo.url
+      end
+    end
+  end
 end
+

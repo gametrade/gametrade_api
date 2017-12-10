@@ -13,7 +13,7 @@ FactoryBot.define do
     user
   end
 
-  factory :category do
+  factory :theme do
     sequence(:name) { |n| n.to_s + FFaker::BaconIpsum.word }
   end
 
@@ -25,7 +25,7 @@ FactoryBot.define do
     lifetime FFaker::Time.date
     user
     game_kind
-    category
+    theme
   end
 
   factory :game_kind do

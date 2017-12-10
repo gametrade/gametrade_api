@@ -6,12 +6,12 @@ require 'factory_bot_rails'
 end
 
 0.upto(10) do
-  FactoryBot.create(:category)
+  FactoryBot.create(:theme)
   FactoryBot.create(:game_kind)
 end
 
 User.all.each do |user|
   FactoryBot.create(:game, user: user,
-         category: Category.all.sample,
+         theme_id: Theme.all.sample.id,
          game_kind: GameKind.all.sample)
 end

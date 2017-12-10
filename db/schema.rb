@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205025652) do
+ActiveRecord::Schema.define(version: 20171210020538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,6 @@ ActiveRecord::Schema.define(version: 20171205025652) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 30
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
   create_table "game_kinds", force: :cascade do |t|
     t.string   "name",       limit: 30
     t.datetime "created_at",            null: false
@@ -56,13 +50,13 @@ ActiveRecord::Schema.define(version: 20171205025652) do
     t.integer  "players"
     t.integer  "user_id"
     t.integer  "game_kind_id"
-    t.integer  "category_id"
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
     t.boolean  "permitted_instant_reservation"
     t.decimal  "price",                                     precision: 6, scale: 2
-    t.index ["category_id"], name: "index_games_on_category_id", using: :btree
+    t.integer  "theme_id"
     t.index ["game_kind_id"], name: "index_games_on_game_kind_id", using: :btree
+    t.index ["theme_id"], name: "index_games_on_theme_id", using: :btree
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
   end
 
@@ -88,6 +82,12 @@ ActiveRecord::Schema.define(version: 20171205025652) do
     t.datetime "updated_at",                         null: false
     t.index ["game_id"], name: "index_reservations_on_game_id", using: :btree
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string   "name",       limit: 30
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,7 +138,6 @@ ActiveRecord::Schema.define(version: 20171205025652) do
   end
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "games", "categories"
   add_foreign_key "games", "game_kinds"
   add_foreign_key "games", "users"
   add_foreign_key "photos", "games"

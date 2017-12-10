@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_user!, except: [:index, :show]
 
   def index
     limit_items ||= params[:limit]
@@ -47,7 +47,7 @@ class GamesController < ApplicationController
   def permitted_attributes
     params.require(:game).
       permit(:name, :description, :launch_date, :lifetime, :players,
-             :game_kind_id, :category_id, :user_id, photos_attributes: [:photo])
+             :game_kind_id, :theme_id, :user_id, photos_attributes: [:photo])
   end
 
   def user_game
