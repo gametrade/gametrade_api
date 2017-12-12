@@ -5,7 +5,7 @@ json.game do
   json.launch_date  game.launch_date
   json.lifetime     game.lifetime
   json.players      game.players
-  json.user_id      game.user_id
+  json.user         game.user
   json.game_kind    game.game_kind
   json.theme        game.theme
   json.price        game.price
@@ -15,6 +15,7 @@ json.game do
   if game.photos
     json.photos do
       json.array! game.photos do |item|
+        json.id item.id
         json.photo item.photo.url
       end
     end

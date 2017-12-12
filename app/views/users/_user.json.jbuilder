@@ -11,7 +11,7 @@ json.user do
 
   if user.address
     json.address do
-      json.kind         user.address.kind
+      json.id           user.address.id
       json.street       user.address.street
       json.number       user.address.number
       json.complement   user.address.complement

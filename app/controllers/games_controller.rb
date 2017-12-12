@@ -20,7 +20,9 @@ class GamesController < ApplicationController
   end
 
   def nearby
-    
+    range = params.require(:range)
+    lat, lng = params.require(:lat), params.require(:lng)
+    render json: GamesLocation.new(range, lat, lng).nearby
   end
 
   def create
@@ -33,7 +35,7 @@ class GamesController < ApplicationController
   end
 
   def update
-    game = user_game.find(:id)
+    game = user_game.find(params[:id])
     if game.update_attributes(permitted_attributes)
       render template: 'games/show', locals: { game: game }
     else
@@ -52,10 +54,12 @@ class GamesController < ApplicationController
   def permitted_attributes
     params.require(:game).
       permit(:name, :description, :launch_date, :lifetime, :players,
-             :game_kind_id, :theme_id, :user_id, photos_attributes: [:photo])
+             :game_kind_id, :theme_id, :user_id,
+             photos_attributes: [:id, :photo])
   end
 
   def user_game
+    current_user ||= User.find(params[:user_id])
     current_user.games
   end
 end

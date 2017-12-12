@@ -1,21 +1,22 @@
 class GamesLocation
   attr_reader :range, :lat, :lng
 
-  def initialize(range, lat, lng)
+  def initialize(range = 100000000, lat, lng)
     @range = range
     @lat = lat
     @lng = lng
   end
 
-  def nearby(limit = nil)
+  def nearby
     users_location = fetch_location
     games = Game.where(user_id: users_location.map{ |loc| loc[:user_id] }).
                  to_a.map(&:serializable_hash)
     games =
       games.map { |game| game.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo} }
-  
-    binding.pry
-    games
+
+    games.each do |game|
+      game.merge!(users_location.detect { |loc| loc[:user_id] == game[:user_id] })
+    end
   end
 
   private

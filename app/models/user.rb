@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: %r{\Aimage\/.*\z}
 
   has_one :address
+  has_many :games
   has_many :wishlists
   has_many :reservations
 
