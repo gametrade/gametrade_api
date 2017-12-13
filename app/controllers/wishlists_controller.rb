@@ -7,12 +7,12 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    wishlist = current_user.wishlists.create(params.require(:fund_id))
+    wishlist = current_user.wishlists.create(params.require(:game_id))
     render template: 'wishlists/show', locals: { wishlist: wishlist }
   end
 
   def destroy
-    wishlist = current_user.wishlists.where(fund_id: params.require(:fund_id))
+    wishlist = current_user.wishlists.find(params.require(:id))
     wishlist.destroy
     render :index
   end
