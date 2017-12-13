@@ -2,11 +2,11 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    limit_items ||= params[:limit]
-    search = Game.ransack(params[:q])
+    search = Game.ransack(params[:q]).
+                  result.order(created_at: :desc).limit(params[:limit])
+
     render template: 'games/index',
-           locals: { games: search.result.order(created_at: :desc).
-                                   limit(limit_items) }
+           locals: { games: search.page(params[:page]).per_page(per_page) }
   end
 
   def show
@@ -61,5 +61,9 @@ class GamesController < ApplicationController
   def user_game
     current_user ||= User.find(params[:user_id])
     current_user.games
+  end
+
+  def per_page
+    params[:per_page] || 10
   end
 end

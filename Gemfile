@@ -14,6 +14,8 @@ gem 'factory_bot_rails'
 gem 'ffaker'
 gem 'activerecord-postgres-earthdistance'
 gem 'geocoder'
+gem 'will_paginate'
+gem 'jbuilder_pagination', require: 'jbuilder/pagination'
 
 group :development, :test do
   gem 'byebug', platform: :mri
