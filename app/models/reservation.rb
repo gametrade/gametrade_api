@@ -1,10 +1,11 @@
 class Reservation < ApplicationRecord
-  enum status: %i[pending confirmed reseved cancelled]
+  enum status: %i[pending confirmed reserved finished cancelled]
 
   belongs_to :game
   belongs_to :user
 
-  validate :validate_belongs_mine, :validate_start_date, :validate_end_date
+  validate :validate_belongs_mine, :validate_start_date, :validate_end_date,
+           :validate_available
   before_save :set_status
 
   def total_value
@@ -18,9 +19,15 @@ class Reservation < ApplicationRecord
     self.status ||= :pending
   end
 
+  def validate_available
+    if game.status.to_sym != :available
+      errors.add(:game_id, message: 'game is not available')
+    end
+  end
+
   def validate_belongs_mine
     if game.user.id == user.id
-      errors.add(:game, message: 'the owner should not reserve the game itself')
+      errors.add(:game_id, message: 'the owner should not reserve the game itself')
     end
   end
 

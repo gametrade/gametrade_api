@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get '/my_games', to: 'games#my_games'
   resources :games
-  resources :reservations
+  resources :reservations do
+    member do
+      post 'confirm', to: 'reservations#confirm'
+    end
+  end
   resources :wishlists, only: [:index, :create, :destroy]
 end

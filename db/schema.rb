@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171210020538) do
+ActiveRecord::Schema.define(version: 20171214020538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171210020538) do
     t.boolean  "permitted_instant_reservation"
     t.decimal  "price",                                     precision: 6, scale: 2
     t.integer  "theme_id"
+    t.integer  "status"
     t.index ["game_kind_id"], name: "index_games_on_game_kind_id", using: :btree
     t.index ["theme_id"], name: "index_games_on_theme_id", using: :btree
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree

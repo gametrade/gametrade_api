@@ -55,7 +55,7 @@ class GamesController < ApplicationController
   def permitted_attributes
     params.require(:game).
       permit(:name, :description, :launch_date, :lifetime, :players,
-             :game_kind_id, :theme_id, :user_id,
+             :game_kind_id, :theme_id, :user_id, :price,
              photos_attributes: [:id, :photo])
   end
 
