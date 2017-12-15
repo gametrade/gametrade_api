@@ -7,7 +7,6 @@ class ReservationsManager
   def create
     if reservation.game.permitted_instant_reservation
       @reservation.status = :reserved
-      @reservation.game.update(status: :reserved)
     end
 
     reservation.total_value
@@ -18,7 +17,6 @@ class ReservationsManager
     reservation = Reservation.find(reservation_id)
 
     reservation.update(status: :reserved)
-    reservation.game.update(status: :reserved)
     reservation.tap { |object| object }
   end
 end
