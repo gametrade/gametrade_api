@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214020538) do
+ActiveRecord::Schema.define(version: 20171210020538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,11 @@ ActiveRecord::Schema.define(version: 20171214020538) do
     t.integer  "players"
     t.integer  "user_id"
     t.integer  "game_kind_id"
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.boolean  "permitted_instant_reservation"
-    t.decimal  "price",                                     precision: 6, scale: 2
+    t.float    "price"
     t.integer  "theme_id"
-    t.integer  "status"
     t.index ["game_kind_id"], name: "index_games_on_game_kind_id", using: :btree
     t.index ["theme_id"], name: "index_games_on_theme_id", using: :btree
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
@@ -78,9 +77,9 @@ ActiveRecord::Schema.define(version: 20171214020538) do
     t.integer  "user_id"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.decimal  "value",      precision: 6, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.float    "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_reservations_on_game_id", using: :btree
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end

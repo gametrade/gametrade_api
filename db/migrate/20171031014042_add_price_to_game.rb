@@ -1,6 +1,6 @@
 class AddPriceToGame < ActiveRecord::Migration[5.0]
   def up
-    add_column :games, :price, :decimal, precision: 6, scale: 2
+    add_column :games, :price, :float
   end
 
   def down

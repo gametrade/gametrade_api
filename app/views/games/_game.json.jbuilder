@@ -9,7 +9,6 @@ json.game do
   json.game_kind    game.game_kind
   json.theme        game.theme
   json.price        game.price
-  json.status       game.status
   json.created_at   game.updated_at
   json.updated_at   game.updated_at
 
