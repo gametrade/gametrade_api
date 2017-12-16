@@ -1,1 +1,1 @@
-json.array! wishlists, partials: 'wishlists/wishlist', as: :wishlist
+json.array! wishlists, partial: 'wishlists/wishlist', as: :wishlist
