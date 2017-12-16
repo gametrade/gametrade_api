@@ -8,11 +8,6 @@ class Reservation < ApplicationRecord
            :validate_available
   before_save :set_status
 
-  def total_value
-    reservation_days = (start_date.to_date..end_date.to_date).count
-    self.value = game.price.to_f * reservation_days
-  end
-
   private
 
   def set_status

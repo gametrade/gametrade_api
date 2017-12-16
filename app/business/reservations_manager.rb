@@ -4,12 +4,17 @@ class ReservationsManager
     @reservation = Reservation.new(params)
   end
 
+  def total_value
+    reservation_days = (reservation.start_date.to_date..reservation.end_date.to_date).count
+    reservation.game.price.to_f * reservation_days
+  end
+
   def create
     if reservation.game.permitted_instant_reservation
       @reservation.status = :reserved
     end
 
-    reservation.total_value
+    @reservation.value = total_value
     reservation.tap { |object| object.save }
   end
 
