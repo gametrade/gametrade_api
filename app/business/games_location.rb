@@ -17,6 +17,8 @@ class GamesLocation
     games.each do |game|
       game.merge!(users_location.detect { |loc| loc[:user_id] == game[:user_id] })
     end
+
+    games.map { |game| { game: game } }
   end
 
   private

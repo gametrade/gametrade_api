@@ -7,7 +7,7 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    wishlist = current_user.wishlists.create(params.require(:game_id))
+    wishlist = Wishlist.create({ user_id: current_user.id, game_id: params.require(:game_id) })
     render template: 'wishlists/show', locals: { wishlist: wishlist }
   end
 
