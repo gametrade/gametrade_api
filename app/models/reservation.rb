@@ -4,20 +4,13 @@ class Reservation < ApplicationRecord
   belongs_to :game
   belongs_to :user
 
-  validate :validate_belongs_mine, :validate_start_date, :validate_end_date,
-           :validate_available
+  validate :validate_belongs_mine, :validate_start_date, :validate_end_date
   before_save :set_status
 
   private
 
   def set_status
     self.status ||= :pending
-  end
-
-  def validate_available
-    if game.status.to_sym != :available
-      errors.add(:game_id, message: 'game is not available')
-    end
   end
 
   def validate_belongs_mine
