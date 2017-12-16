@@ -19,4 +19,11 @@ class ReservationsManager
     reservation.update(status: :reserved)
     reservation.tap { |object| object }
   end
+
+  def self.cancel(reservation_id)
+    reservation = Reservation.find(reservation_id)
+
+    reservation.update(status: :cancelled)
+    reservation.tap { |object| object }
+  end
 end

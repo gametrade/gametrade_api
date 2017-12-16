@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   resources :game_kinds, only: [:index, :show]
 
   get '/my_games', to: 'games#my_games'
-  resources :games
+  resources :games do
+    collection do
+      get 'nearby'
+    end
+  end
   resources :reservations do
     member do
       post 'confirm', to: 'reservations#confirm'
+      post 'cancel', to: 'reservations#cancel'
     end
   end
   resources :wishlists, only: [:index, :create, :destroy]

@@ -21,6 +21,11 @@ class ReservationsController < ApplicationController
     render json: reservation.errors.empty? ? reservation : reservation.errors
   end
 
+  def cancel
+    reservation = ReservationsManager.cancel(params.require(:id))
+    render json: reservation.errors.empty? ? reservation : reservation.errors
+  end
+
   private
 
   def permitted_attributes
